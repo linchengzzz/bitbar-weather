@@ -2,7 +2,7 @@
 
 const AppInfo = {
     title: 'Weather',
-    version: 'v1.0',
+    version: 'v1.1',
     author: 'linchengzzz',
     authorGithub:'https://github.com/linchengzzz/bitbar-weather.git',
     desc:'a bitbar weather plugin',
