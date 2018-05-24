@@ -20,4 +20,4 @@ npm install
  将 ./plugins/WeatherLight.30m.js 放入bitbar 插件包
  - 深色菜单：
  将 ./plugins/WeatherDark.30m.js 放入 bitbar 插件包
- > 注意要安装响应的 node_modules
+ > 注意要安装相应的 node_modules
