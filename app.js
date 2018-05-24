@@ -2,7 +2,7 @@
 
 const AppInfo = {
     title: 'Weather',
-    version: 'v1.1',
+    version: 'v1.2',
     author: 'linchengzzz',
     authorGithub:'https://github.com/linchengzzz/bitbar-weather.git',
     desc:'a bitbar weather plugin',
@@ -20,6 +20,8 @@ const User = {
     Uid: 'UB46F4FDA0',
     Key: '1ncn52cwwvipmjui'
 }
+//修改显示颜色
+const color ='white';
 //轻易天气类--返回 promise 实例
 class Weather {
     constructor(uid, key) {
@@ -129,15 +131,15 @@ async.waterfall([
         bitbar.sep,
         {
             text: `位置：${location.name}`,
-            color: '#ffffff',
+            color,
         },
         {
             text: `天气：${weather.text}`,
-            color: '#ffffff',
+            color,
         },
         {
             text: `温度：${weather.temperature}℃`,
-            color: '#ffffff',
+            color,
         },
     ]);
 });

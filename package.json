@@ -9,10 +9,7 @@
     "request": "^2.87.0",
     "request-promise": "^4.2.2"
   },
-  "devDependencies": {},
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "scripts": {},
   "author": "",
   "license": "ISC"
 }
