@@ -4,9 +4,9 @@ const AppInfo = {
     title: 'Weather',
     version: 'v1.2',
     author: 'linchengzzz',
-    authorGithub:'https://github.com/linchengzzz/bitbar-weather.git',
-    desc:'a bitbar weather plugin',
-    dependencies:'node.js',
+    authorGithub: 'https://github.com/linchengzzz/bitbar-weather.git',
+    desc: 'a bitbar weather plugin',
+    dependencies: 'node.js',
 }
 
 const crypto = require('crypto');
@@ -21,7 +21,7 @@ const User = {
     Key: '1ncn52cwwvipmjui'
 }
 //修改显示颜色
-const color ='black';
+const color = 'black';
 //轻易天气类--返回 promise 实例
 class Weather {
     constructor(uid, key) {
@@ -52,10 +52,10 @@ function getIP(callback) {
     const url = `http://fp.ip-api.com/json`
     http.get(url, res => {
         var result = ''
-        res.on("data", function(data) {
+        res.on("data", function (data) {
             result += data;
         })
-        res.on("end", function() {
+        res.on("end", function () {
             callback(null, result);
         })
     })
@@ -67,10 +67,10 @@ function getLocation(ip, callback) {
     const url = `http://ip-api.com/json/${ip}?fields=520191&lang=en`
     http.get(url, res => {
         var result = ''
-        res.on("data", function(data) {
+        res.on("data", function (data) {
             result += data;
         })
-        res.on("end", function() {
+        res.on("end", function () {
             callback(null, result);
         })
     })
@@ -86,7 +86,7 @@ async.waterfall([
     getIP,
     getLocation,
     getWeather
-], function(err, result) {
+], function (err, result) {
     const data = result.results[0];
     const location = data.location;
     const weather = data.now;
@@ -116,15 +116,23 @@ async.waterfall([
         case '19' || '20' || '37':
             icon = '🌨';
             break;
-        case '21' || '22' || '23' || '24' || '25':
+        case '21' || '22':
             icon = '❄️';
+            break;
+        case '23' || '24' || '25':
+            icon = '☃️';
+            break;
+        case '32' || '33' || '34' || '35' || '36':
+            icon = '🌪️';
+            break;
+        case '26' || '27' || '28' || '29' || '30' || '31':
+            icon = '🌫️';
             break;
         default:
             icon = 'N/A'
             break;
     }
-    bitbar([
-        {
+    bitbar([{
             text: `${location.name}:${icon} ${weather.temperature}℃`,
             dropdown: false
         },
@@ -143,6 +151,3 @@ async.waterfall([
         },
     ]);
 });
-
-
-
