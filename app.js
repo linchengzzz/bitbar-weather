@@ -92,40 +92,40 @@ async.waterfall([
     const weather = data.now;
     let icon = ''
     switch (weather.code) {
-        case '0' || '2' || '38':
+        case '0': case '2': case '38':
             icon = '☀️';
             break;
-        case '1' || '3':
+        case '1': case '3':
             icon = '🌙';
             break;
-        case '4' || '9':
+        case '4': case '9':
             icon = '☁️';
             break;
-        case '5' || '6' || '7' || '8':
+        case '5': case '6': case '7': case '8':
             icon = '⛅️';
             break;
-        case '10' || '11' || '12' || '13' || '14' || '15':
+        case '10': case '11': case '12': case '13': case '14': case '15':
             icon = '🌧';
             break;
-        case '16' || '17' || '18':
+        case '16': case '17': case '18':
             icon = '⛈';
             break;
-        case '34' || '35' || '36':
+        case '34': case '35': case '36':
             icon = '🌩';
             break;
-        case '19' || '20' || '37':
+        case '19': case '20': case '37':
             icon = '🌨';
             break;
-        case '21' || '22':
+        case '21': case '22':
             icon = '❄️';
             break;
-        case '23' || '24' || '25':
+        case '23': case '24': case '25':
             icon = '☃️';
             break;
-        case '32'||'33'||'34'||'35'||'36':
+        case '32': case'33': case'34': case'35': case'36':
             icon = '🌪️';
             break;
-        case '26'||'27'||'28'||'29'||'30'||'31':
+        case '26': case'27': case'28': case'29': case'30': case'31':
             icon = '🌫️';
             break;
         default:
