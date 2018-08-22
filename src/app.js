@@ -1,5 +1,3 @@
-#!/usr/bin/env /usr/local/bin/node
-
 const AppInfo = {
     title: 'Weather',
     version: 'v1.2',
@@ -16,6 +14,7 @@ const bitbar = require('bitbar');
 const http = require('http');
 const https = require('https');
 const async = require('async');
+
 const User = {
     Uid: 'UB46F4FDA0',
     Key: '1ncn52cwwvipmjui'
