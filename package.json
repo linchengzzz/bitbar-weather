@@ -1,8 +1,8 @@
 {
   "name": "bitbar",
-  "version": "1.0.0",
+  "version": "1.4.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "dependencies": {
     "async": "^2.6.1",
     "bitbar": "^0.3.0",
@@ -13,8 +13,8 @@
   "scripts": {
     "build": "webpack"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "linchengzzz",
+  "license": "MIT",
   "devDependencies": {
     "babel-core": "^6.26.3",
     "babel-loader": "^7.1.5",
