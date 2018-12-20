@@ -49,7 +49,7 @@ class Weather {
         return params;
     }
     /**
-     * 
+     * 获取当前天气
      * @param {string} location - 用户当前的地理位置
      * @returns {Promise}
      */
