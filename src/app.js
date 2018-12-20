@@ -14,18 +14,28 @@ const bitbar = require('bitbar');
 const http = require('http');
 const async = require('async');
 
+// 申请免费 Key
 const User = {
     Uid: 'UB46F4FDA0',
     Key: '1ncn52cwwvipmjui'
 };
 //修改显示颜色
 const color = 'white';
-//轻易天气类--返回 promise 实例
+//轻易天气类--返回 Promise 实例
 class Weather {
+    /**
+     * 初始化 Weather 对象
+     * @param {string} uid - 用户 ID
+     * @param {string} key - 密钥 Key
+     */
     constructor(uid, key) {
         this.uid = uid;
         this.key = key;
     }
+    /**
+     * 返回查询所需要的参数
+     * @returns {Object} 返回查询的参数
+     */
     getSignatureParams() {
         const params = {};
         params.ts = Math.floor(new Date().getTime() / 1000);
@@ -38,6 +48,11 @@ class Weather {
             .digest('base64');
         return params;
     }
+    /**
+     * 
+     * @param {string} location - 用户当前的地理位置
+     * @returns {Promise}
+     */
     getWeatherNow(location) {
         var params = this.getSignatureParams();
         params.location = location;
@@ -48,7 +63,11 @@ class Weather {
         });
     }
 }
-//获取 IP
+
+/**
+ * 获取当前 IP
+ * @param {getLocation} callback - 获取地理位置
+ */
 function getIP(callback) {
     const url = `http://fp.ip-api.com/json`;
     http.get(url, res => {
@@ -62,7 +81,12 @@ function getIP(callback) {
     });
 }
 
-//获取地理位置
+/**
+ * 获取地理位置
+ * @callback getLocation - 获取地理位置
+ * @param {string} ip - 当前用户的 IP 地址
+ * @param {getWeatherCallback} callback - 获取天气信息
+ */
 function getLocation(ip, callback) {
     ip = JSON.parse(ip).query;
     const url = `http://ip-api.com/json/${ip}?fields=520191&lang=en`;
@@ -77,15 +101,26 @@ function getLocation(ip, callback) {
     });
 }
 
-//获取当前天气
+/**
+ * 获取用户天气
+ * @callback getWeatherCallback - 获取用户天气
+ * @param {string} location - 当前用户的地理位置
+ * @param {requestCallback} callback - Request 响应
+ */
 function getWeather(location, callback) {
     location = JSON.parse(location).city;
     new Weather(User.Uid, User.Key)
         .getWeatherNow(location)
         .then(result => callback(null, result));
 }
-
-async.waterfall([getIP, getLocation, getWeather], function(err, result) {
+/**
+ * 同步执行请求
+ * @param {Function[]} Fns - 同步执行 Promise 请求
+ * @callback requestCallback
+ * @param {Error} err - 捕获异常
+ * @param {any} result - Response 响应
+ */
+async.waterfall([getIP, getLocation, getWeather], (err, result) => {
     const data = result.results[0];
     const location = data.location;
     const weather = data.now;
